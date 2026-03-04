@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мега-сайт Джейсона Стэтхем</title>
+    <!-- Подключаем кастомный шрифт (Google Fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Меню навигации */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid #ffd700;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+        }
+
+        .nav-btn:hover {
+            background: #ffd700;
+            color: #1a1a2e;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        /* Основной контент */
+        .content {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 10px #ffd700;
+            color: #ffd700;
+        }
+
+        h2 {
+            margin: 20px 0 10px;
+            font-size: 20px;
+            color: #ffd700;
+        }
+
+        /* Галерея */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ffd700;
+        }
+
+        /* Калькулятор */
+        .calculator {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 300px;
+            margin: 20px auto;
+            border: 1px solid #ffd700;
+        }
+
+        .calc-display {
+            background: #000;
+            color: #ffd700;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+            border: 1px solid #ffd700;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        .calc-btn {
+            background: #000;
+            color: #ffd700;
+            border: 1px solid #ffd700;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #ffd700;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .calc-btn.operator {
+            background: #ffd700;
+            color: #000;
+        }
+
+        .calc-btn.operator:hover {
+            background: #000;
+            color: #ffd700;
+        }
+
+        /* Форма обратной связи */
+        .contact-form {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+            border: 1px solid #ffd700;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #000;
+            color: #ffd700;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #000;
+            color: #ffd700;
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        /* Python-блок */
+        .python-block {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ffd700;
+        }
+
+        .python-code {
+            background: #000;
+            color: #ffd700;
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+            border: 1px solid #ffd700;
+        }
+
+        .run-python {
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .run-python:hover {
+            background: #000;
+            color: #ffd700;
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        /* Цитаты Стетхема */
+        .quote-box {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 150px;
+            color: rgba(255, 215, 0, 0.2);
+            font-family: serif;
+        }
+
+        .quote-box::after {
+            content: '"';
+            position: absolute;
+            bottom: -80px;
+            right: 10px;
+            font-size: 150px;
+            color: rgba(255, 215, 0, 0.2);
+            font-family: serif;
+        }
+
+        #quote {
+            font-size: 24px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .statham-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #ffd700;
+            margin: 20px auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Карточка дня */
+        .daily-card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ffd700;
+            text-align: center;
+        }
+
+        .daily-advice {
+            font-size: 18px;
+            margin: 15px 0;
+            padding: 15px;
+            background: #000;
+            border-radius: 10px;
+            color: #ffd700;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 { font-size: 16px; }
+            .nav-btn { font-size: 8px; padding: 8px 12px; }
+            #quote { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационное меню -->
+    <div class="navbar">
+        <button class="nav-btn" onclick="showSection('home')">🏠 Главная</button>
+        <button class="nav-btn" onclick="showSection('gallery')">🖼️ Галерея</button>
+        <button class="nav-btn" onclick="showSection('calculator')">🧮 Калькулятор</button>
+        <button class="nav-btn" onclick="showSection('form')">📝 Форма</button>
+        <button class="nav-btn" onclick="showSection('python')">🐍 Python</button>
+        <button class="nav-btn" onclick="showSection('statham')">💪 Стетхем</button>
+        <button class="nav-btn" onclick="showSection('daily')">📅 Совет дня</button>
+        <button class="nav-btn" onclick="showSection('video')">🎬 Видео</button>
+    </div>
+    <!-- Основной контент -->
+    <div class="content" id="mainContent">
+        <h1>💪 Добро пожаловать в мир Джейсона Стетхема!</h1>
+        <img src="https://aif-s3.aif.ru/images/004/409/a6858776ff3008c3d12fb66496dc08bd.jpg" alt="Джейсон Стетхем" class="statham-image">
+        <p style="text-align: center; font-size: 18px;">Тут собраны лучшие цитаты и советы от самого крутого парня в мире.</p>
+    </div>
+
+    <script>
+        // Массив цитат Джейсона Стетхема
+        const stathamQuotes = [
+            "Я не играю в шахматы. Я играю в игру «кто быстрее вырубит соперника».",
+            "У меня нет чувства юмора. Я просто говорю правду, а она смешная.",
+            "Я не пью чай. Чай — это для бабушек и англичан.",
+            "Если ты не можешь сделать что-то хорошо, сделай это с выражением лица.",
+            "Я не хожу в спортзал. Я просто живу так, что мышцы растут сами.",
+            "Лысина — это не прическа, это образ жизни.",
+            "Я не смотрю боевики. Я их снимаю.",
+            "Лучший способ решить проблему — дать ей по лицу.",
+            "Я не использую шампунь. Я мою голову мыслями о победе.",
+            "Если жизнь дает тебе лимоны — выжми их в глаза обидчику.",
+            "Я не сплю. Я отдыхаю между ударами.",
+            "Зеркала не врут. Они просто боятся.",
+            "Я не ем суши. Суши — это для тех, кто боится ножа и вилки.",
+            "Мой любимый вид спорта — смотреть, как другие занимаются спортом.",
+            "Я не ношу часы. Время подождет."
+        ];
+
+        // Массив советов дня
+        const dailyAdvice = [
+            "Сегодня надень черное. Как обычно.",
+            "Если кто-то косо посмотрел — посмотри в ответ еще косее.",
+            "Лучшая защита — нападение. Лучшее нападение — с ноги.",
+            "Не забудь побить грушу. Или кого-нибудь.",
+            "Сегодня идеальный день, чтобы наорать на соседей.",
+            "Улыбнись. Это бесит окружающих.",
+            "Сделай 100 отжиманий. Или 200. Кто тебе считает?",
+            "Посмотри в зеркало и скажи: 'Красавчик'.",
+            "Если ничего не хочешь делать — не делай. Но с каменным лицом.",
+            "Сегодня ты либо железный, либо джелезный. Выбирай."
+        ];
+
+        // Функция для переключения секций
+        function showSection(section) {
+            let content = document.getElementById('mainContent');
+
+            switch(section) {
+                case 'home':
+                    content.innerHTML = `
+                        <h1>🏠 Главная страница</h1>
+                        <img src="https://www.menslife.com/upload/iblock/ca5/12984619129.jpg" alt="Джейсон Стетхем" class="statham-image">
+                        <p style="text-align: center;">Это главный экран. Тут живет дух Стетхема.</p>
+                        <div style="text-align: center; margin: 30px 0;">
+                            <button class="nav-btn" onclick="alert('Ты нажал кнопку. Молодец.')">Нажми меня</button>
+                        </div>
+                    `;
+                    break;
+
+                case 'gallery':
+                    content.innerHTML = `
+                        <h1>🖼️ Галерея Стетхема</h1>
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="https://memepedia.ru/wp-content/uploads/2018/08/ksv52yz8vg.jpg" alt="Стетхем 1">
+                                <p>Джейсон с утра</p>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://cs.pikabu.ru/post_img/2013/03/13/10/1363191127_1899100219.jpg" alt="Стетхем 2">
+                                <p>Джейсон на роботе</p>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://memepedia.ru/wp-content/uploads/2018/08/ksv52yz8vg.jpg" alt="Стетхем 3">
+                                <p>Джейсон на обеде</p>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://memepedia.ru/wp-content/uploads/2018/08/ksv52yz8vg.jpg" alt="Стетхем 4">
+                                <p>Джейсон на отдыхе</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'calculator':
+                    content.innerHTML = `
+                        <h1>🧮 Калькулятор Стетхема</h1>
+                        <div class="calculator">
+                            <div class="calc-display" id="calcDisplay">0</div>
+                            <div class="calc-buttons">
+                                <button class="calc-btn" onclick="appendToCalc('7')">7</button>
+                                <button class="calc-btn" onclick="appendToCalc('8')">8</button>
+                                <button class="calc-btn" onclick="appendToCalc('9')">9</button>
+                                <button class="calc-btn operator" onclick="setOperator('/')">÷</button>
+
+                                <button class="calc-btn" onclick="appendToCalc('4')">4</button>
+                                <button class="calc-btn" onclick="appendToCalc('5')">5</button>
+                                <button class="calc-btn" onclick="appendToCalc('6')">6</button>
+                                <button class="calc-btn operator" onclick="setOperator('*')">×</button>
+
+                                <button class="calc-btn" onclick="appendToCalc('1')">1</button>
+                                <button class="calc-btn" onclick="appendToCalc('2')">2</button>
+                                <button class="calc-btn" onclick="appendToCalc('3')">3</button>
+                                <button class="calc-btn operator" onclick="setOperator('-')">-</button>
+
+                                <button class="calc-btn" onclick="appendToCalc('0')">0</button>
+                                <button class="calc-btn" onclick="appendToCalc('.')">.</button>
+                                <button class="calc-btn" onclick="calculate()">=</button>
+                                <button class="calc-btn operator" onclick="setOperator('+')">+</button>
+
+                                <button class="calc-btn" style="grid-column: span 4;" onclick="clearCalc()">C</button>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 10px;">Стетхем одобряет математику</p>
+                    `;
+                    break;
+
+                case 'form':
+                    content.innerHTML = `
+                        <h1>📝 Напиши Стетхему</h1>
+                        <div class="contact-form">
+                            <div class="form-group">
+                                <label>Имя (или кличка):</label>
+                                <input type="text" id="name" placeholder="Введи имя">
+                            </div>
+                            <div class="form-group">
+                                <label>Email (если есть):</label>
+                                <input type="email" id="email" placeholder="Введи email">
+                            </div>
+                            <div class="form-group">
+                                <label>Сообщение для Джейсона:</label>
+                                <textarea id="message" placeholder="Напиши что-нибудь крутое"></textarea>
+                            </div>
+                            <button class="submit-btn" onclick="submitForm()">Отправить</button>
+                            <p id="formResult" style="margin-top: 15px; text-align: center;"></p>
+                        </div>
+                    `;
+                    break;
+
+                case 'python':
+                    content.innerHTML = `
+                        <h1>🐍 Python-код Стетхема</h1>
+                        <div class="python-block">
+                            <p>Как выглядел бы Python, если б его написал Стетхем:</p>
+                            <div class="python-code">
+                                <pre>def стетхем_говорит(фраза):
+    return f"💪 {фраза.upper()}!"
+
+while True:
+    print(стетхем_говорит("Я СЕЙЧАС ВСЕМ НАДАЮ"))
+    # Бесконечный цикл, потому что Стетхем не останавливается</pre>
+                            </div>
+                            <button class="run-python" onclick="runPythonCode()">Запустить код</button>
+                            <div id="pythonResult" style="margin-top: 15px; padding: 10px; background: #000; border-radius: 5px; color: #ffd700;"></div>
+                        </div>
+                    `;
+                    break;
+
+                case 'statham':
+                    let randomQuote = stathamQuotes[Math.floor(Math.random() * stathamQuotes.length)];
+                    content.innerHTML = `
+                        <h1>💪 Цитаты Джейсона Стетхема</h1>
+                        <img src="https://i.pinimg.com/170x/68/5c/fd/685cfd6b6794f911610d777903d3e45f.jpg" alt="Джейсон Стетхем" class="statham-image">
+                        <div class="quote-box">
+                            <p id="quote">${randomQuote}</p>
+                            <button class="nav-btn" onclick="getStathamQuote()">Новая цитата</button>
+                        </div>
+                    `;
+                    break;
+
+                case 'daily':
+                    let randomAdvice = dailyAdvice[Math.floor(Math.random() * dailyAdvice.length)];
+                    content.innerHTML = `
+                        <h1>📅 Совет дня от Стетхема</h1>
+                        <div class="daily-card">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2cmSVXBSC6XAHf1L8tG-EzBa_3HtjA8NRiQ&s" alt="Джейсон Стетхем" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #ffd700;">
+                            <div class="daily-advice" id="dailyAdvice">
+                                ${randomAdvice}
+                            </div>
+                            <button class="nav-btn" onclick="getDailyAdvice()">Новый совет</button>
+                        </div>
+                    `;
+                    break;
+                case 'video':
+    content.innerHTML = `
+        <h1>🎬 Видео дня</h1>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 15px; border: 2px solid #ffd700; margin: 20px 0;">
+            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p style="text-align: center;">Тут мог быть любой прикол. Вставь свою ссылку с YouTube.</p>
+        <div style="text-align: center; margin-top: 20px;">
+            <input type="text" id="videoUrl" placeholder="Вставь ссылку на YouTube" style="width: 80%; padding: 10px; border-radius: 5px; border: 1px solid #ffd700; background: #000; color: #ffd700;">
+            <button class="nav-btn" onclick="changeVideo()" style="margin-top: 10px;">Сменить видео</button>
+        </div>
+    `;
+    break;
+   // Функция для смены видео
+function changeVideo() {
+    let url = document.getElementById('videoUrl').value;
+
+    // Если ничего не ввели
+    if (!url) {
+        alert('Вставь ссылку, бро!');
+        return;
+    }
+
+    // Достаем ID видео из ссылки YouTube
+    let videoId = '';
+
+    if (url.includes('youtu.be/')) {
+        // Ссылка типа https://youtu.be/xxxxxx
+        videoId = url.split('youtu.be/')[1].split('?')[0];
+    }
+    else if (url.includes('youtube.com/watch?v=')) {
+        // Ссылка типа https://www.youtube.com/watch?v=xxxxxx
+        videoId = url.split('v=')[1].split('&')[0];
+    }
+    else if (url.includes('youtube.com/embed/')) {
+        // Ссылка типа https://www.youtube.com/embed/xxxxxx
+        videoId = url.split('embed/')[1].split('?')[0];
+    }
+    else {
+        alert('Неправильная ссылка! Используй YouTube ссылки вида:\n' +
+              '- https://youtu.be/XXXXXX\n' +
+              '- https://www.youtube.com/watch?v=XXXXXX');
+        return;
+    }
+
+    // Обновляем iframe
+    let iframe = document.querySelector('iframe');
+    if (iframe) {
+        iframe.src = 'https://www.youtube.com/embed/' + videoId;
+    } else {
+        alert('Чёт с iframe проблемы...');
+    }
+}
+            }
+        }
+
+        // Калькулятор
+        let calcDisplay = '0';
+        let currentOperator = '';
+        let firstNumber = null;
+
+        function appendToCalc(num) {
+            if (calcDisplay === '0' || calcDisplay === '0') {
+                calcDisplay = num;
+            } else {
+                calcDisplay += num;
+            }
+            document.getElementById('calcDisplay').innerText = calcDisplay;
+        }
+
+        function setOperator(op) {
+            if (firstNumber === null) {
+                firstNumber = parseFloat(calcDisplay);
+                currentOperator = op;
+                calcDisplay = '0';
+            }
+        }
+
+        function calculate() {
+            if (firstNumber !== null && currentOperator) {
+                let secondNumber = parseFloat(calcDisplay);
+                let result = 0;
+
+                switch(currentOperator) {
+                    case '+': result = firstNumber + secondNumber; break;
+                    case '-': result = firstNumber - secondNumber; break;
+                    case '*': result = firstNumber * secondNumber; break;
+                    case '/': result = firstNumber / secondNumber; break;
+                }
+
+                document.getElementById('calcDisplay').innerText = result;
+                calcDisplay = result.toString();
+                firstNumber = null;
+                currentOperator = '';
+            }
+        }
+
+        function clearCalc() {
+            calcDisplay = '0';
+            firstNumber = null;
+            currentOperator = '';
+            document.getElementById('calcDisplay').innerText = '0';
+        }
+
+        // Форма
+        function submitForm() {
+            let name = document.getElementById('name')?.value || 'не указано';
+            let email = document.getElementById('email')?.value || 'не указан';
+            let message = document.getElementById('message')?.value || 'пусто';
+
+            document.getElementById('formResult').innerHTML = `
+                ✅ Стетхем получил твое сообщение, ${name}!<br>
+                Он ответит тебе на ${email}, если захочет.<br>
+                Твое сообщение: "${message}"<br>
+                💪 Будь как Стетхем!
+            `;
+        }
+
+        // Python
+        function runPythonCode() {
+            let result = '💪 РЕЗУЛЬТАТ РАБОТЫ PYTHON-КОДА СТЕТХЕМА:\n\n';
+            result += 'Я СЕЙЧАС ВСЕМ НАДАЮ!\n';
+            result += 'Я СЕЙЧАС ВСЕМ НАДАЮ!\n';
+            result += 'Я СЕЙЧАС ВСЕМ НАДАЮ!\n';
+            result += '... (бесконечный цикл, потому что Стетхем не останавливается)';
+
+            document.getElementById('pythonResult').innerText = result;
+        }
+
+        // Цитаты Стетхема
+        function getStathamQuote() {
+            let randomIndex = Math.floor(Math.random() * stathamQuotes.length);
+            document.getElementById('quote').innerText = stathamQuotes[randomIndex];
+        }
+
+        // Совет дня
+        function getDailyAdvice() {
+            let randomIndex = Math.floor(Math.random() * dailyAdvice.length);
+            document.getElementById('dailyAdvice').innerText = dailyAdvice[randomIndex];
+        }
+    </script>
+</body>
+</html>
